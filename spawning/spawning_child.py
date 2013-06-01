@@ -192,9 +192,12 @@ def deadman_timeout(signum, frame):
 
 def tpool_wsgi(app):
     from eventlet import tpool
+    from django.http import HttpResponse, HttpResponseRedirect, HttpResponseServerError, HttpResponseNotFound    
     def tpooled_application(e, s):
         result = tpool.execute(app, e, s)
-        # return builtins directly
+        # return builtins or Django responses directly
+        if isinstance(result, (HttpResponse, HttpResponseRedirect, HttpResponseServerError, HttpResponseNotFound) ):
+            return result
         if isinstance(result, (basestring, list, tuple)):
             return result
         else:
