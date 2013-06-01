@@ -238,7 +238,7 @@ def serve_from_child(sock, config, controller_pid):
 
     access_log_file = config.get('access_log_file')
     if access_log_file is not None:
-        access_log_file = open(access_log_file, 'a')
+        access_log_file = open(access_log_file, 'a', 1)
 
     max_age = 0
     if config.get('max_age'):
