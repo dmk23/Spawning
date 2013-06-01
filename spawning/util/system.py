@@ -53,7 +53,6 @@ class System(dict):
             'python_revision': platform.python_revision(),
             'python_version_tuple': platform.python_version_tuple(),
             'python_path': sys.path,
-            'login': os.getlogin(),
             'system': platform.system(),
             'temp_directory': tempfile.gettempdir(),
             'uname': platform.uname(),
